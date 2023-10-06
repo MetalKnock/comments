@@ -1,5 +1,7 @@
+import CommentContainer from "@/containers/CommentContainer/CommentContainer";
+
 function Comments() {
-    return <div>comments</div>;
+    return <CommentContainer />;
 }
 
 export default Comments;
