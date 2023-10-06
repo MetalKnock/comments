@@ -21,7 +21,7 @@ function CommentItem({
     leftSlot = null,
     actionSlot = null,
 }: CommentItemProps) {
-    const {text, created} = comment;
+    const {text, created, parent, id} = comment;
     const {name} = author;
 
     const formattedCreated = formatDate(new Date(created));
@@ -36,6 +36,8 @@ function CommentItem({
                     {actionSlot && <div>{actionSlot}</div>}
                 </Wrapper>
                 <div>{text}</div>
+                <div>{id}</div>
+                <div>{parent}</div>
             </div>
         </Wrapper>
     );

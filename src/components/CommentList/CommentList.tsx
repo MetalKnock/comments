@@ -1,41 +1,64 @@
+import {Fragment} from "react";
 import styled from "styled-components";
 import {Author} from "@/types/author.types";
 import {Comment} from "@/types/comment.types";
 import {CommentItem} from "@/components/CommentItem";
 import {getAuthorById} from "@/utils/author";
+import {getChildComments, getCurrentLevelComments} from "@/utils/comment";
 
 const Wrapper = styled.div``;
+
+const NextLevel = styled.div`
+    margin-left: 40px;
+`;
 
 interface CommentListProps {
     comments: Comment[];
     authors: Author[];
+    parentId: number | null;
 }
 
-function CommentList({comments, authors}: CommentListProps) {
+function CommentList({comments, authors, parentId = null}: CommentListProps) {
+    const currentLevelComments = getCurrentLevelComments({comments, parentId});
+
     return (
         <Wrapper>
-            {comments.map((comment) => {
+            {currentLevelComments.map((comment) => {
                 const author = getAuthorById({
                     authors,
                     authorId: comment.author,
                 });
+                const childComments = getChildComments({
+                    comments,
+                    parentId: comment.id,
+                });
 
                 return (
                     author && (
-                        <CommentItem
-                            key={comment.id}
-                            comment={comment}
-                            author={author}
-                            actionSlot={<button type="button">like</button>}
-                            leftSlot={
-                                author && (
-                                    <img
-                                        src={author.avatar}
-                                        alt={author.name}
+                        <Fragment key={comment.id}>
+                            <CommentItem
+                                comment={comment}
+                                author={author}
+                                actionSlot={<button type="button">like</button>}
+                                leftSlot={
+                                    author && (
+                                        <img
+                                            src={author.avatar}
+                                            alt={author.name}
+                                        />
+                                    )
+                                }
+                            />
+                            {childComments.length > 0 && (
+                                <NextLevel>
+                                    <CommentList
+                                        comments={comments}
+                                        authors={authors}
+                                        parentId={comment.id}
                                     />
-                                )
-                            }
-                        />
+                                </NextLevel>
+                            )}
+                        </Fragment>
                     )
                 );
             })}

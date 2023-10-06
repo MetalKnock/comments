@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import {Comment, Pagination} from "@/types/comment.types";
 import {subtractHours} from "@/lib/date";
 
