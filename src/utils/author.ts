@@ -1,3 +1,5 @@
+import {Author} from "@/types/author.types";
+
 interface GetAuthorByIdProps {
     authors: Author[];
     authorId: number;

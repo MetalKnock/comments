@@ -1,24 +1,8 @@
-import axios from "axios";
 import {useInfiniteQuery, useQuery} from "@tanstack/react-query";
-import {Comment, Pagination} from "@/types/comment";
-import {RoutesApi} from "@/constants/routesApi";
+import {Comment, Pagination} from "@/types/comment.types";
 import {CommentList} from "@/components/CommentList";
-
-async function fetchAuthors() {
-    const {data} = await axios.get(
-        `${import.meta.env.VITE_API_URL}${RoutesApi.AUTHORS}`,
-    );
-
-    return data;
-}
-async function fetchCommentsByPage({pageParam = 1}) {
-    const {data} = await axios.get<Pagination<Comment[]>>(
-        `${import.meta.env.VITE_API_URL}${RoutesApi.COMMENTS}`,
-        {params: {page: pageParam}},
-    );
-
-    return data;
-}
+import {fetchAuthors} from "@/services/author.services";
+import {fetchCommentsByPage} from "@/services/comment.services";
 
 function CommentContainer() {
     const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} =
@@ -34,6 +18,7 @@ function CommentContainer() {
         queryKey: ["authors"],
         queryFn: fetchAuthors,
     });
+
     if (isLoading) {
         return <div>loading...</div>;
     }

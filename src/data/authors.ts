@@ -8,7 +8,7 @@ import img7 from "src/assets/avatars/gon.jpeg";
 import img8 from "src/assets/avatars/palpatine.jpeg";
 import img9 from "src/assets/avatars/general.jpeg";
 import img10 from "src/assets/avatars/chew.jpeg";
-import {Author} from "@/types/author";
+import {Author} from "@/types/author.types";
 
 const authors: Author[] = [
     {

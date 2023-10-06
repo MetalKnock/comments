@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 import styled from "styled-components";
-import {Comment} from "@/types/comment";
-import {Author} from "@/types/author";
+import {Comment} from "@/types/comment.types";
+import {Author} from "@/types/author.types";
 import {formatDate} from "@/lib/date";
 
 const Wrapper = styled.div`

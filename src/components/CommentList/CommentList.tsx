@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {Author} from "@/types/author";
-import {Comment} from "@/types/comment";
+import {Author} from "@/types/author.types";
+import {Comment} from "@/types/comment.types";
 import {CommentItem} from "@/components/CommentItem";
 import {getAuthorById} from "@/utils/author";
 
