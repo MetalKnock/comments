@@ -21,7 +21,7 @@ function CommentItem({
     leftSlot = null,
     actionSlot = null,
 }: CommentItemProps) {
-    const {text, created, parent, id} = comment;
+    const {text, created, parent, id, likes} = comment;
     const {name} = author;
 
     const formattedCreated = formatDate(new Date(created));
@@ -33,7 +33,12 @@ function CommentItem({
                 <Wrapper>
                     <div>{name}</div>
                     <div>{formattedCreated}</div>
-                    {actionSlot && <div>{actionSlot}</div>}
+                    {actionSlot && (
+                        <>
+                            <div>{actionSlot}</div>
+                            <div>{likes}</div>
+                        </>
+                    )}
                 </Wrapper>
                 <div>{text}</div>
                 <div>{id}</div>

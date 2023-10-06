@@ -5,6 +5,7 @@ import {Comment} from "@/types/comment.types";
 import {CommentItem} from "@/components/CommentItem";
 import {getAuthorById} from "@/utils/author";
 import {getChildComments, getCurrentLevelComments} from "@/utils/comment";
+import {CommentLikeButton} from "@/features/CommentLike";
 
 const Wrapper = styled.div``;
 
@@ -15,7 +16,7 @@ const NextLevel = styled.div`
 interface CommentListProps {
     comments: Comment[];
     authors: Author[];
-    parentId: number | null;
+    parentId?: number | null;
 }
 
 function CommentList({comments, authors, parentId = null}: CommentListProps) {
@@ -39,7 +40,9 @@ function CommentList({comments, authors, parentId = null}: CommentListProps) {
                             <CommentItem
                                 comment={comment}
                                 author={author}
-                                actionSlot={<button type="button">like</button>}
+                                actionSlot={
+                                    <CommentLikeButton commentId={comment.id} />
+                                }
                                 leftSlot={
                                     author && (
                                         <img

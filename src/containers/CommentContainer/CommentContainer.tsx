@@ -3,6 +3,7 @@ import {Comment, Pagination} from "@/types/comment.types";
 import {CommentList} from "@/components/CommentList";
 import {fetchAuthors} from "@/services/author.services";
 import {fetchCommentsByPage} from "@/services/comment.services";
+import {Author} from "@/types/author.types";
 
 function CommentContainer() {
     const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} =
@@ -14,13 +15,17 @@ function CommentContainer() {
                 pagination.page + 1,
         });
 
-    const {data: authors} = useQuery({
+    const {data: authors, isLoading: isLoadingAuthors} = useQuery<Author[]>({
         queryKey: ["authors"],
         queryFn: fetchAuthors,
     });
 
-    if (isLoading) {
+    if (isLoading && isLoadingAuthors) {
         return <div>loading...</div>;
+    }
+
+    if (!data || !authors) {
+        return <div>empty</div>;
     }
 
     const handleClick = () => {
@@ -30,7 +35,7 @@ function CommentContainer() {
     return (
         <>
             <div>
-                {data?.pages.map(({pagination, data: comments}) => (
+                {data.pages.map(({pagination, data: comments}) => (
                     <CommentList
                         key={pagination.page}
                         comments={comments}
