@@ -1,15 +1,15 @@
 import {ReactNode} from "react";
 import styled from "styled-components";
+import {Container} from "../UI/Container/Container";
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
 `;
 
 const Main = styled.main`
     display: flex;
-    flex-grow: 1;
+    flex-direction: column;
 `;
 
 interface MainLayoutProps {
@@ -21,7 +21,9 @@ function MainLayout({children, header = null}: MainLayoutProps) {
     return (
         <Wrapper>
             {header && <header>{header}</header>}
-            <Main>{children}</Main>
+            <Main>
+                <Container>{children}</Container>
+            </Main>
         </Wrapper>
     );
 }

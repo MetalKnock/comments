@@ -10,7 +10,7 @@ import {CommentLikeButton} from "@/features/CommentLike";
 const Wrapper = styled.div``;
 
 const NextLevel = styled.div`
-    margin-left: 40px;
+    padding-left: 40px;
 `;
 
 interface CommentListProps {
