@@ -1,12 +1,21 @@
+import styled from "styled-components";
 import {useState} from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {Comment, Pagination} from "@/types/comment.types";
+import LikeIcon from "../../components/UI/Icons/LikeIcon/LikeIcon";
+import {Button} from "@/components/UI/Button";
+
+const StyledLikeButton = styled(Button)`
+    padding: 0;
+    outline: none;
+    background: none;
+`;
 
 interface CommentLikeButtonProps {
     commentId: number;
 }
 
-export interface InfiniteData<TData> {
+interface InfiniteData<TData> {
     pages: TData[];
     pageParams: unknown[];
 }
@@ -42,9 +51,9 @@ function CommentLikeButton({commentId}: CommentLikeButtonProps) {
     };
 
     return (
-        <button type="button" onClick={handleLikeClick}>
-            like
-        </button>
+        <StyledLikeButton type="button" onClick={handleLikeClick}>
+            <LikeIcon size={22} isLiked={isLiked} />
+        </StyledLikeButton>
     );
 }
 export default CommentLikeButton;

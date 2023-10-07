@@ -1,22 +1,13 @@
 import {Comment} from "@/types/comment.types";
 
-interface GetChildCommentsProps {
-    comments: Comment[];
-    parentId: number;
-}
-
-export function getChildComments({comments, parentId}: GetChildCommentsProps) {
-    return comments.filter((comment) => comment.parent === parentId);
-}
-
-interface GetCurrentLevelCommentsProps {
+interface FilterCommentsByParentIdProps {
     comments: Comment[];
     parentId: number | null;
 }
 
-export function getCurrentLevelComments({
+export function filterCommentsByParentId({
     comments,
     parentId,
-}: GetCurrentLevelCommentsProps) {
+}: FilterCommentsByParentIdProps) {
     return comments.filter((comment) => comment.parent === parentId);
 }

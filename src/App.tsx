@@ -14,7 +14,7 @@ function App() {
                 <MainLayout>
                     <Comments />
                 </MainLayout>
-                <ReactQueryDevtools />
+                {/* <ReactQueryDevtools /> */}
                 <GlobalStyle />
             </Theme>
         </QueryClientProvider>

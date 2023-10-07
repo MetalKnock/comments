@@ -10,6 +10,7 @@ declare module "styled-components" {
             };
             secondary: {
                 main: string;
+                light: string;
             };
             background: {
                 main: string;
@@ -17,6 +18,7 @@ declare module "styled-components" {
             };
             border: {
                 main: string;
+                mainOpacity: string;
             };
         };
         typography: {
@@ -44,13 +46,15 @@ const theme = {
         },
         secondary: {
             main: "#8297AB",
+            light: "#626262",
         },
         background: {
             main: "#313439",
-            dark: "#1B1E1F",
+            dark: "#0E1A1E",
         },
         border: {
             main: "#767676",
+            mainOpacity: "rgba(118,188,188,0.2)",
         },
     },
     typography: {

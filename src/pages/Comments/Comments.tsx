@@ -1,4 +1,4 @@
-import CommentContainer from "@/containers/CommentContainer/CommentContainer";
+import {CommentContainer} from "@/containers/CommentContainer";
 
 function Comments() {
     return <CommentContainer />;

@@ -3,9 +3,53 @@ import styled from "styled-components";
 import {Comment} from "@/types/comment.types";
 import {Author} from "@/types/author.types";
 import {formatDate} from "@/lib/date";
+import {Column} from "../UI/Column";
+import {Row} from "../UI/Row";
 
-const Wrapper = styled.div`
+const Wrapper = styled.article`
     display: flex;
+    gap: 20px;
+    overflow-x: auto;
+`;
+
+const Header = styled.header`
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+`;
+
+const Content = styled.div`
+    flex-grow: 1;
+`;
+
+const StyledColumn = styled(Column)`
+    padding: 12px 0;
+    gap: 4px;
+`;
+
+const StyledRow = styled(Row)`
+    gap: 8px;
+`;
+
+const Name = styled.h3`
+    font-size: inherit;
+    margin: 0;
+    font-weight: ${({theme}) => theme.typography.fontWeight.lg};
+    line-height: 1.3;
+`;
+
+const Time = styled.span`
+    color: ${({theme}) => theme.palette.secondary.main};
+`;
+
+const Text = styled.p`
+    word-break: break-all;
+    margin: 0;
+`;
+
+const Likes = styled.span`
+    font-weight: ${({theme}) => theme.typography.fontWeight.lg};
 `;
 
 interface CommentItemProps {
@@ -21,7 +65,7 @@ function CommentItem({
     leftSlot = null,
     actionSlot = null,
 }: CommentItemProps) {
-    const {text, created, parent, id, likes} = comment;
+    const {text, created, likes} = comment;
     const {name} = author;
 
     const formattedCreated = formatDate(new Date(created));
@@ -29,21 +73,21 @@ function CommentItem({
     return (
         <Wrapper>
             {leftSlot && <div>{leftSlot}</div>}
-            <div>
-                <Wrapper>
-                    <div>{name}</div>
-                    <div>{formattedCreated}</div>
+            <Content>
+                <Header>
+                    <StyledColumn>
+                        <Name>{name}</Name>
+                        <Time>{formattedCreated}</Time>
+                    </StyledColumn>
                     {actionSlot && (
-                        <>
+                        <StyledRow>
                             <div>{actionSlot}</div>
-                            <div>{likes}</div>
-                        </>
+                            <Likes>{likes}</Likes>
+                        </StyledRow>
                     )}
-                </Wrapper>
-                <div>{text}</div>
-                <div>{id}</div>
-                <div>{parent}</div>
-            </div>
+                </Header>
+                <Text>{text}</Text>
+            </Content>
         </Wrapper>
     );
 }

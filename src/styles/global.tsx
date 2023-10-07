@@ -1,4 +1,6 @@
 import {createGlobalStyle} from "styled-components";
+import {BREAKPOINTS} from "@/constants/breakpoints";
+import background from "@/assets/backgrounds/background.png";
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -19,6 +21,17 @@ export const GlobalStyle = createGlobalStyle`
         color: ${({theme}) => theme.palette.primary.light};
 
         background: ${({theme}) => theme.palette.background.dark};
+        background-image: url(${background});
+        background-size: cover;
+        background-attachment: fixed;
+
+        @media (max-width: ${BREAKPOINTS.lg}px) {
+            background-position: -477px;
+        }
+
+        @media (max-width: ${BREAKPOINTS.md}px) {
+            font-size: ${({theme}) => theme.typography.fontSize.xs};
+        }
     }
 
     main {
@@ -31,6 +44,8 @@ export const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         justify-content: space-between;
     }
+
+   
 
     // Normalize
 
