@@ -4,6 +4,7 @@ import {CommentList} from "@/components/CommentList";
 import {fetchAuthors} from "@/services/author.services";
 import {fetchCommentsByPage} from "@/services/comment.services";
 import {Author} from "@/types/author.types";
+import {CommentHeader} from "@/components/CommentHeader";
 
 function CommentContainer() {
     const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} =
@@ -34,6 +35,7 @@ function CommentContainer() {
 
     return (
         <>
+            <CommentHeader totalComments={267} totalLikes={8600} />
             <div>
                 {data.pages.map(({pagination, data: comments}) => (
                     <CommentList
