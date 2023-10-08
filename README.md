@@ -1,27 +1,37 @@
-# React + TypeScript + Vite
+# Comments
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Live demo [_here_](https://metalknock.github.io/comments/).
 
-Currently, two official plugins are available:
+## Installing / Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In the project directory, you can run:
 
-## Expanding the ESLint configuration
+```
+# Runs the app in the development mode
+$ npm run start
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Builds the app for production
+$ npm run build
 
-- Configure the top-level `parserOptions` property like this:
+# Lints your TypeScript and TypeScript React files using ESLint. It reports any linting errors or warnings.
+Make sure to follow the linting rules specified in the `.eslintrc` configuration file.
+$ npm run lint
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+# Lints your CSS files using Stylelint in the `src` directory.
+$ npm run lint:css
+
+# Lints your CSS files using Stylelint and automatically fixes any fixable issues.
+$ npm run lint:css:fix
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Technologies Used
+
+-   React
+-   TypeScript
+-   React Query
+-   Styled Components
+-   Axios
+-   ESLint
+-   Stylelint
+-   Prettier
+-   Vite
