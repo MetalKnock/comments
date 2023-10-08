@@ -1,7 +1,7 @@
 import {CommentContainer} from "@/containers/CommentContainer";
 
-function Comments() {
+function CommentsPage() {
     return <CommentContainer />;
 }
 
-export default Comments;
+export default CommentsPage;
