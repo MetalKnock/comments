@@ -13,5 +13,6 @@ export const Container = styled.div`
 
     @media (max-width: ${BREAKPOINTS.md}px) {
         width: 100%;
+        margin: 32px auto 76px auto;
     }
 `;

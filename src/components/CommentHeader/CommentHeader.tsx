@@ -1,6 +1,7 @@
 import styled, {useTheme} from "styled-components";
 import {Row} from "@/components/UI/Row";
-import LikeIcon from "@/components/UI/Icons/LikeIcon/LikeIcon";
+import {LikeIcon} from "@/components/UI/Icons/LikeIcon";
+import {BREAKPOINTS} from "@/constants/breakpoints";
 
 const StyledRow = styled.header`
     display: flex;
@@ -11,6 +12,13 @@ const StyledRow = styled.header`
 
 const LikeWrapper = styled(Row)`
     gap: 10px;
+
+    @media (max-width: ${BREAKPOINTS.sm}px) {
+        & svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
 `;
 
 const TotalText = styled.span`

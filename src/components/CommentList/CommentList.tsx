@@ -16,13 +16,20 @@ const Wrapper = styled.div`
     &:first-of-type {
         margin: 0px;
     }
+
+    @media (max-width: ${BREAKPOINTS.sm}px) {
+        gap: 24px;
+        margin-top: 24px;
+    }
 `;
 
-const NextLevel = styled.div`
-    padding-left: 34px;
+const NextLevel = styled.div<{
+    $parentId: number | null;
+}>`
+    padding-left: ${({$parentId}) => ($parentId === null ? 34 : 0)}px;
 
     @media (max-width: ${BREAKPOINTS.md}px) {
-        padding-left: 20px;
+        padding-left: ${({$parentId}) => ($parentId === null ? 20 : 0)}px;
     }
 `;
 
@@ -31,6 +38,11 @@ const Avatar = styled.img`
     height: 68px;
     border-radius: 50%;
     object-fit: cover;
+
+    @media (max-width: ${BREAKPOINTS.sm}px) {
+        width: 40px;
+        height: 40px;
+    }
 `;
 
 interface CommentListProps {
@@ -71,7 +83,7 @@ function CommentList({comments, authors, parentId = null}: CommentListProps) {
                                 }
                             />
                             {childComments.length > 0 && (
-                                <NextLevel>
+                                <NextLevel $parentId={parentId}>
                                     <CommentList
                                         comments={comments}
                                         authors={authors}

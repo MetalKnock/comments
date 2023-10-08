@@ -5,11 +5,11 @@ import {Author} from "@/types/author.types";
 import {formatDate} from "@/lib/date";
 import {Column} from "../UI/Column";
 import {Row} from "../UI/Row";
+import {BREAKPOINTS} from "@/constants/breakpoints";
 
 const Wrapper = styled.article`
     display: flex;
     gap: 20px;
-    overflow-x: auto;
 `;
 
 const Header = styled.header`
@@ -17,6 +17,7 @@ const Header = styled.header`
     align-items: center;
     gap: 20px;
     justify-content: space-between;
+    flex-wrap: wrap;
 `;
 
 const Content = styled.div`
@@ -26,6 +27,11 @@ const Content = styled.div`
 const StyledColumn = styled(Column)`
     padding: 12px 0;
     gap: 4px;
+    flex: 1 1 100px;
+
+    @media (max-width: ${BREAKPOINTS.sm}px) {
+        padding: 0;
+    }
 `;
 
 const StyledRow = styled(Row)`
@@ -46,6 +52,10 @@ const Time = styled.span`
 const Text = styled.p`
     word-break: break-all;
     margin: 0;
+
+    @media (max-width: ${BREAKPOINTS.sm}px) {
+        margin-top: 8px;
+    }
 `;
 
 const Likes = styled.span`

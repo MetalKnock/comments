@@ -10,9 +10,14 @@ export const Button = styled.button`
     border: none;
     color: ${({theme}) => theme.palette.primary.light};
     background: ${({theme}) => theme.palette.background.main};
+    transition: all 0.5s;
 
     &:disabled {
         cursor: not-allowed;
         color: ${({theme}) => theme.palette.secondary.light};
+    }
+
+    &:hover:not(:disabled) {
+        background: ${({theme}) => theme.palette.secondary.main};
     }
 `;

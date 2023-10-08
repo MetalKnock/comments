@@ -7,14 +7,27 @@ import {fetchCommentsByPage} from "@/services/comment.services";
 import {Author} from "@/types/author.types";
 import {CommentHeader} from "@/components/CommentHeader";
 import {Button} from "@/components/UI/Button";
+import {BREAKPOINTS} from "@/constants/breakpoints";
+import {ReactComponent as LoadingIcon} from "@/assets/icons/loader.svg";
 
 const CommentListWrapper = styled.div`
     margin-top: 32px;
+
+    @media (max-width: ${BREAKPOINTS.sm}px) {
+        margin-top: 24px;
+    }
 `;
 
 const StyledButton = styled(Button)`
     min-width: 234px;
     margin: 60px auto 0 auto;
+    font-size: ${({theme}) => theme.typography.fontSize.md};
+`;
+
+const StyledLoadingIcon = styled(LoadingIcon)`
+    height: 20px;
+    width: 20px;
+    margin: 0;
 `;
 
 function CommentContainer() {
@@ -35,11 +48,15 @@ function CommentContainer() {
     });
 
     if (isLoading && isLoadingAuthors) {
-        return <div>loading...</div>;
+        return (
+            <div>
+                <LoadingIcon />
+            </div>
+        );
     }
 
     if (!data || !authors) {
-        return <div>empty</div>;
+        return <div>Данные не найдены</div>;
     }
 
     const handleClick = () => {
@@ -75,13 +92,19 @@ function CommentContainer() {
                 ))}
             </CommentListWrapper>
 
-            <StyledButton
-                type="button"
-                onClick={handleClick}
-                disabled={isFetchingNextPage || !hasNextPage}
-            >
-                Загрузить еще
-            </StyledButton>
+            {hasNextPage && (
+                <StyledButton
+                    type="button"
+                    onClick={handleClick}
+                    disabled={isFetchingNextPage}
+                >
+                    {isFetchingNextPage ? (
+                        <StyledLoadingIcon />
+                    ) : (
+                        "Загрузить еще"
+                    )}
+                </StyledButton>
+            )}
         </>
     );
 }

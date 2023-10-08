@@ -30,7 +30,6 @@ declare module "styled-components" {
                 lg: string;
             };
             fontSize: {
-                xs: string;
                 sm: string;
                 md: string;
             };
@@ -66,9 +65,8 @@ const theme = {
             lg: "700",
         },
         fontSize: {
-            xs: "14px",
-            sm: "15px",
-            md: "16px",
+            sm: "0.875rem",
+            md: "1rem",
         },
     },
 };

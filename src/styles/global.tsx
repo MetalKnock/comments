@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
         }
 
         @media (max-width: ${BREAKPOINTS.md}px) {
-            font-size: ${({theme}) => theme.typography.fontSize.xs};
+            font-size: ${({theme}) => theme.typography.fontSize.sm};
         }
     }
 
