@@ -48,11 +48,7 @@ function CommentContainer() {
     });
 
     if (isLoading && isLoadingAuthors) {
-        return (
-            <div>
-                <LoadingIcon />
-            </div>
-        );
+        return <LoadingIcon />;
     }
 
     if (!data || !authors) {

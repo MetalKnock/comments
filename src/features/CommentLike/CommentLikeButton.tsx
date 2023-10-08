@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {Comment, Pagination} from "@/types/comment.types";
 import {LikeIcon} from "@/components/UI/Icons/LikeIcon";
@@ -37,7 +37,7 @@ function CommentLikeButton({commentId}: CommentLikeButtonProps) {
     const [isLiked, setIsLiked] = useState(false);
     const queryClient = useQueryClient();
 
-    const handleLikeClick = () => {
+    const updateLikeInQuery = (isIncrement: boolean) => {
         queryClient.setQueryData<InfiniteData<Pagination<Comment[]>>>(
             ["comments"],
             (data) =>
@@ -50,7 +50,7 @@ function CommentLikeButton({commentId}: CommentLikeButtonProps) {
                                 comment.id === commentId
                                     ? {
                                           ...comment,
-                                          likes: !isLiked
+                                          likes: isIncrement
                                               ? comment.likes + 1
                                               : comment.likes - 1,
                                       }
@@ -60,8 +60,35 @@ function CommentLikeButton({commentId}: CommentLikeButtonProps) {
                     }),
                 },
         );
-        setIsLiked((prevIsLiked) => !prevIsLiked);
     };
+
+    const handleLikeClick = () => {
+        updateLikeInQuery(!isLiked);
+        setIsLiked((prevIsLiked) => {
+            localStorage.setItem(
+                `comment_${commentId}_liked`,
+                String(!prevIsLiked),
+            );
+            return !prevIsLiked;
+        });
+    };
+
+    useEffect(() => {
+        const likedStatus = localStorage.getItem(`comment_${commentId}_liked`);
+        const isLikedStatus = likedStatus === "true";
+
+        if (isLikedStatus) {
+            setIsLiked(isLikedStatus);
+            updateLikeInQuery(true);
+        }
+        return () => {
+            if (isLikedStatus) {
+                setIsLiked(isLikedStatus);
+                updateLikeInQuery(false);
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [commentId, queryClient]);
 
     return (
         <StyledLikeButton type="button" onClick={handleLikeClick}>
