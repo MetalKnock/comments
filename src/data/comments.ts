@@ -1,17 +1,10 @@
-import {subtractHours} from "src/lib/date";
-
-interface IPagination<T> {
-    pagination: {
-        page: number;
-        size: number;
-        total_pages: number;
-    };
-    data: T;
-}
+/* eslint-disable no-useless-concat */
+import {Comment, Pagination} from "@/types/comment.types";
+import {subtractHours} from "@/lib/date";
 
 const today = new Date();
 
-const commentsPage1: IPagination<any[]> = {
+const commentsPage1: Pagination<Comment[]> = {
     pagination: {
         page: 1,
         size: 6,
@@ -142,7 +135,7 @@ const commentsPage1: IPagination<any[]> = {
     ],
 };
 
-const commentsPage2: IPagination<any[]> = {
+const commentsPage2: Pagination<Comment[]> = {
     pagination: {
         page: 2,
         size: 6,
@@ -216,7 +209,7 @@ const commentsPage2: IPagination<any[]> = {
     ],
 };
 
-const commentsPage3: IPagination<any[]> = {
+const commentsPage3: Pagination<Comment[]> = {
     pagination: {
         page: 3,
         size: 6,
