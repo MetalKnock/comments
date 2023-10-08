@@ -1,4 +1,4 @@
-import {PluralizationRules} from "../types/pluralize..types";
+import {PluralizationRules} from "@/types/pluralize.types";
 
 export const MILLISECONDS_IN_ONE_SECOND = 1000;
 export const SECONDS_IN_ONE_MINUTE = 60;

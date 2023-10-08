@@ -1,43 +1,62 @@
-import {useInfiniteQuery, useQuery} from "@tanstack/react-query";
-import {Comment, Pagination} from "@/types/comment.types";
 import {CommentList} from "@/components/CommentList";
-import {fetchAuthors} from "@/services/author.services";
-import {fetchCommentsByPage} from "@/services/comment.services";
-import {Author} from "@/types/author.types";
 import {CommentHeader} from "@/components/CommentHeader";
 import {ReactComponent as LoadingIcon} from "@/assets/icons/loader.svg";
 import {
     CommentListWrapper,
     StyledButton,
+    StyledError,
     StyledLoadingIcon,
 } from "./CommentContainer.styled";
+import {useInfiniteCommentLoader} from "@/hooks/useInfiniteCommentLoader";
+import {useAuthors} from "@/hooks/useAuthors";
+import {UNKNOWN_ERROR} from "@/constants/common";
 
 function CommentContainer() {
-    const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} =
-        useInfiniteQuery<Pagination<Comment[]>>({
-            queryKey: ["comments"],
-            queryFn: fetchCommentsByPage,
-            getNextPageParam: ({pagination}) =>
-                pagination.total_pages !== pagination.page &&
-                pagination.page + 1,
-            refetchOnWindowFocus: false,
-        });
+    const {
+        data,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
+        isLoading: isLoadingComments,
+        isError: isErrorComments,
+        error: commentsError,
+    } = useInfiniteCommentLoader();
+    const {
+        data: authors,
+        isLoading: isLoadingAuthors,
+        isError: isErrorAuthors,
+        error: authorsError,
+    } = useAuthors();
 
-    const {data: authors, isLoading: isLoadingAuthors} = useQuery<Author[]>({
-        queryKey: ["authors"],
-        queryFn: fetchAuthors,
-        refetchOnWindowFocus: false,
-    });
-
-    if (isLoading && isLoadingAuthors) {
+    if (isLoadingComments || isLoadingAuthors) {
         return <LoadingIcon />;
+    }
+
+    if (isErrorComments) {
+        return (
+            <StyledError>
+                {commentsError instanceof Error
+                    ? commentsError.message
+                    : UNKNOWN_ERROR}
+            </StyledError>
+        );
+    }
+
+    if (isErrorAuthors) {
+        return (
+            <StyledError>
+                {authorsError instanceof Error
+                    ? authorsError.message
+                    : UNKNOWN_ERROR}
+            </StyledError>
+        );
     }
 
     if (!data || !authors) {
         return <div>Данные не найдены</div>;
     }
 
-    const handleClick = () => {
+    const handleLoadMoreClick = () => {
         fetchNextPage();
     };
 
@@ -73,7 +92,7 @@ function CommentContainer() {
             {hasNextPage && (
                 <StyledButton
                     type="button"
-                    onClick={handleClick}
+                    onClick={handleLoadMoreClick}
                     disabled={isFetchingNextPage}
                 >
                     {isFetchingNextPage ? (

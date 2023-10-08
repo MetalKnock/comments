@@ -1,4 +1,4 @@
-import {PluralizationRules} from "@/types/pluralize..types";
+import {PluralizationRules} from "@/types/pluralize.types";
 
 export function pluralize(
     number: number,

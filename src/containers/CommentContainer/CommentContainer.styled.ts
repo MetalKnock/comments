@@ -21,3 +21,7 @@ export const StyledLoadingIcon = styled(LoadingIcon)`
     height: 20px;
     margin: 0;
 `;
+
+export const StyledError = styled.h2`
+    text-align: center;
+`;
