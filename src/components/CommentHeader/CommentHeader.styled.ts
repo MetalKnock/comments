@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import {Row} from "../UI/Row";
-import {BREAKPOINTS} from "@/constants/breakpoints";
 
 export const StyledRow = styled.header`
     display: flex;
@@ -12,7 +11,7 @@ export const StyledRow = styled.header`
 export const LikeWrapper = styled(Row)`
     gap: 10px;
 
-    @media (max-width: ${BREAKPOINTS.sm}px) {
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
         & svg {
             width: 20px;
             height: 20px;

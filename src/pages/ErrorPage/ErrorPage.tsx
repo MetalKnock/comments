@@ -4,13 +4,13 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
     height: calc(100vh - 16px);
+    text-align: center;
 `;
 
 const StyledButton = styled.button`
-    margin: 0 auto;
     padding: 8px 20px;
+    margin: 0 auto;
 `;
 
 interface ErrorPageProps {

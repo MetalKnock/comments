@@ -1,5 +1,4 @@
 import {createGlobalStyle} from "styled-components";
-import {BREAKPOINTS} from "@/constants/breakpoints";
 import background from "@/assets/backgrounds/background.png";
 
 export const GlobalStyle = createGlobalStyle`
@@ -9,33 +8,30 @@ export const GlobalStyle = createGlobalStyle`
 
     html {
         height: 100%;
+        line-height: 1.15;
+        text-size-adjust: 100%;
     }
 
     body {
         display: flex;
         min-height: 100%;
-
+        margin: 0;
         font-family: ${({theme}) => theme.typography.fontFamily.main};
         font-size: ${({theme}) => theme.typography.fontSize.md};
         font-weight: ${({theme}) => theme.typography.fontWeight.sm};
         color: ${({theme}) => theme.palette.primary.light};
-
         background: ${({theme}) => theme.palette.background.dark};
         background-image: url(${background});
-        background-size: cover;
         background-attachment: fixed;
+        background-size: cover;
 
-        @media (max-width: ${BREAKPOINTS.lg}px) {
+        @media (max-width: ${({theme}) => theme.breakpoints.lg}) {
             background-position: -477px;
         }
 
-        @media (max-width: ${BREAKPOINTS.md}px) {
+        @media (max-width: ${({theme}) => theme.breakpoints.md}) {
             font-size: ${({theme}) => theme.typography.fontSize.sm};
         }
-    }
-
-    main {
-        display: block;
     }
 
     #root {
@@ -43,19 +39,6 @@ export const GlobalStyle = createGlobalStyle`
         flex: 1 1 100%;
         flex-direction: column;
         justify-content: space-between;
-    }
-
-   
-
-    // Normalize
-
-    html {
-        line-height: 1.15;
-        text-size-adjust: 100%;
-    }
-
-    body {
-        margin: 0;
     }
 
     main {
@@ -68,9 +51,9 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     hr {
-        overflow: visible;
         box-sizing: content-box;
         height: 0;
+        overflow: visible;
     }
 
     pre {
@@ -172,12 +155,10 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     legend {
-        display: table;
-
         box-sizing: border-box;
+        display: table;
         max-width: 100%;
         padding: 0;
-
         color: inherit;
         white-space: normal;
     }

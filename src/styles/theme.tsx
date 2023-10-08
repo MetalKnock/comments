@@ -34,6 +34,12 @@ declare module "styled-components" {
                 md: string;
             };
         };
+        breakpoints: {
+            sm: string;
+            md: string;
+            lg: string;
+            xl: string;
+        };
     }
 }
 
@@ -68,6 +74,12 @@ const theme = {
             sm: "0.875rem",
             md: "1rem",
         },
+    },
+    breakpoints: {
+        sm: "576px",
+        md: "768px",
+        lg: "1024",
+        xl: "1200px",
     },
 };
 

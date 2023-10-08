@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import {Column} from "../UI/Column";
-import {BREAKPOINTS} from "@/constants/breakpoints";
 import {Row} from "../UI/Row";
 
 export const Wrapper = styled.article`
@@ -10,10 +9,10 @@ export const Wrapper = styled.article`
 
 export const Header = styled.header`
     display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: space-between;
     flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const Content = styled.div`
@@ -21,11 +20,11 @@ export const Content = styled.div`
 `;
 
 export const StyledColumn = styled(Column)`
-    padding: 12px 0;
-    gap: 4px;
     flex: 1 1 100px;
+    gap: 4px;
+    padding: 12px 0;
 
-    @media (max-width: ${BREAKPOINTS.sm}px) {
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
         padding: 0;
     }
 `;
@@ -35,8 +34,8 @@ export const StyledRow = styled(Row)`
 `;
 
 export const Name = styled.h3`
-    font-size: inherit;
     margin: 0;
+    font-size: inherit;
     font-weight: ${({theme}) => theme.typography.fontWeight.lg};
     line-height: 1.3;
 `;
@@ -46,10 +45,10 @@ export const Time = styled.span`
 `;
 
 export const StyledText = styled.p`
-    word-break: break-all;
     margin: 0;
+    word-break: break-all;
 
-    @media (max-width: ${BREAKPOINTS.sm}px) {
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
         margin-top: 8px;
     }
 `;
