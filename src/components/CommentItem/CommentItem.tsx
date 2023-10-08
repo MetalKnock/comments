@@ -13,6 +13,7 @@ import {
     Time,
     Wrapper,
 } from "./CommentItem.styled";
+import {numberWithSpaces} from "@/utils/numbers";
 
 interface CommentItemProps {
     comment: Comment;
@@ -22,14 +23,11 @@ interface CommentItemProps {
 }
 
 function CommentItem({
-    comment,
-    author,
+    comment: {text, created, likes},
+    author: {name},
     leftSlot = null,
     actionSlot = null,
 }: CommentItemProps) {
-    const {text, created, likes} = comment;
-    const {name} = author;
-
     const formattedCreated = formatDate(new Date(created));
 
     return (
@@ -44,7 +42,7 @@ function CommentItem({
                     {actionSlot && (
                         <StyledRow>
                             <div>{actionSlot}</div>
-                            <Likes>{likes}</Likes>
+                            <Likes>{numberWithSpaces(likes)}</Likes>
                         </StyledRow>
                     )}
                 </Header>

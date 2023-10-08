@@ -1,6 +1,7 @@
 import {useTheme} from "styled-components";
 import {LikeIcon} from "@/components/UI/Icons/LikeIcon";
 import {LikeWrapper, StyledRow, TotalText} from "./CommentHeader.styled";
+import {numberWithSpaces} from "@/utils/numbers";
 
 interface CommentHeaderProps {
     totalComments: number;
@@ -12,7 +13,9 @@ function CommentHeader({totalComments, totalLikes}: CommentHeaderProps) {
 
     return (
         <StyledRow>
-            <TotalText>{`${totalComments} комментариев`}</TotalText>
+            <TotalText>{`${numberWithSpaces(
+                totalComments,
+            )} комментариев`}</TotalText>
             <LikeWrapper>
                 <LikeIcon
                     size={22}
@@ -21,7 +24,7 @@ function CommentHeader({totalComments, totalLikes}: CommentHeaderProps) {
                         theme.palette.secondary.main,
                     ]}
                 />
-                <TotalText>{totalLikes}</TotalText>
+                <TotalText>{numberWithSpaces(totalLikes)}</TotalText>
             </LikeWrapper>
         </StyledRow>
     );
