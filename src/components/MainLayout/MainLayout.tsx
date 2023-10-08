@@ -1,16 +1,6 @@
 import {ReactNode} from "react";
-import styled from "styled-components";
 import {Container} from "../UI/Container/Container";
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Main = styled.main`
-    display: flex;
-    flex-direction: column;
-`;
+import {Main, Wrapper} from "./MainLayout.styled";
 
 interface MainLayoutProps {
     children: ReactNode;

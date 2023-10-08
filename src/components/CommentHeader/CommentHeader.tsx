@@ -1,29 +1,6 @@
-import styled, {useTheme} from "styled-components";
-import {Row} from "@/components/UI/Row";
+import {useTheme} from "styled-components";
 import {LikeIcon} from "@/components/UI/Icons/LikeIcon";
-import {BREAKPOINTS} from "@/constants/breakpoints";
-
-const StyledRow = styled.header`
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 8px;
-    border-bottom: 1px solid ${({theme}) => theme.palette.border.mainOpacity};
-`;
-
-const LikeWrapper = styled(Row)`
-    gap: 10px;
-
-    @media (max-width: ${BREAKPOINTS.sm}px) {
-        & svg {
-            width: 20px;
-            height: 20px;
-        }
-    }
-`;
-
-const TotalText = styled.span`
-    font-weight: ${({theme}) => theme.typography.fontWeight.lg};
-`;
+import {LikeWrapper, StyledRow, TotalText} from "./CommentHeader.styled";
 
 interface CommentHeaderProps {
     totalComments: number;
